@@ -149,6 +149,7 @@
     <None Include="game_perf_overlay.ico" />
     <None Include="game_perf_overlay.iss" />
     <None Include="README.md" />
+    <None Include="LICENSE" />
     <None Include="CHANGELOG.md" />
     <None Include="build.bat" />
     <None Include="build_net48.bat" />

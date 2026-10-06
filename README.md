@@ -56,4 +56,6 @@ build_release.bat
 
 ## 许可
 
-本项目随附的 PresentMon 组件遵循 `PresentMon-LICENSE.txt` 中的许可条款。
+本项目自身的代码和文档按 Apache License 2.0 授权，详见 [`LICENSE`](./LICENSE)。
+
+随附的 PresentMon 组件是独立的第三方软件，版权归 Intel Corporation 所有，并继续遵循 [`PresentMon-LICENSE.txt`](./PresentMon-LICENSE.txt) 中的 MIT 许可；本项目的 Apache-2.0 许可不取代或更改其许可。

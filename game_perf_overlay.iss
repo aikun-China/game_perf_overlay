@@ -43,6 +43,7 @@ Source: "bin\Release\game_perf_overlay\game_perf_overlay.exe"; DestDir: "{app}";
 Source: "bin\Release\game_perf_overlay\PresentMon-2.6.0-x64.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "bin\Release\game_perf_overlay\PresentMon-LICENSE.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "README.md"; DestDir: "{app}"; DestName: "使用说明.md"; Flags: ignoreversion
+Source: "LICENSE"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
 Name: "{group}\game_perf_overlay"; Filename: "{app}\game_perf_overlay.exe"
