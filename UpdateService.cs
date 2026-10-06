@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -49,7 +50,7 @@ namespace PerfMonitor
                 object assetsValue;
                 if (data.TryGetValue("assets", out assetsValue))
                 {
-                    object[] assets = assetsValue as object[];
+                    IEnumerable assets = assetsValue as IEnumerable;
                     if (assets != null)
                     {
                         foreach (object item in assets)

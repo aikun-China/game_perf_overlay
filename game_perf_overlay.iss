@@ -1,5 +1,5 @@
 #define MyAppName "game_perf_overlay"
-#define MyAppVersion "1.0.0"
+#define MyAppVersion "1.0.1"
 #define MyAppPublisher "愛君_aikun"
 #define MyAppURL "https://github.com/aikun-China/game_perf_overlay"
 
@@ -29,7 +29,7 @@ OutputBaseFilename=game_perf_overlay-Setup-v{#MyAppVersion}
 Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern
-VersionInfoVersion=1.0.0.0
+VersionInfoVersion=1.0.1.0
 VersionInfoCompany={#MyAppPublisher}
 VersionInfoDescription=game_perf_overlay 安装程序
 VersionInfoProductName={#MyAppName}
