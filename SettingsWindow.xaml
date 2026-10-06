@@ -1,0 +1,142 @@
+<Window x:Class="PerfMonitor.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:PerfMonitor"
+        Title="game_perf_overlay 设置"
+        Width="480" SizeToContent="Height"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        ShowInTaskbar="True"
+        Loaded="Window_Loaded"
+        Closed="Window_Closed">
+    <StackPanel Margin="16">
+        <GroupBox Header="监控项 (至少保留一项)" Padding="10" Margin="0,0,0,12">
+            <WrapPanel>
+                <CheckBox x:Name="CpuChk"  Content="CPU"   Margin="0,0,18,0"/>
+                <CheckBox x:Name="MemChk"  Content="内存"  Margin="0,0,18,0"/>
+                <CheckBox x:Name="GpuChk"  Content="GPU"   Margin="0,0,18,0"/>
+                <CheckBox x:Name="FpsChk"  Content="FPS"/>
+            </WrapPanel>
+        </GroupBox>
+
+        <GroupBox Header="时间显示" Padding="10" Margin="0,0,0,12">
+            <WrapPanel>
+                <CheckBox x:Name="TimeChk"     Content="显示时间" Margin="0,0,18,0"
+                         Checked="TimeChk_Changed" Unchecked="TimeChk_Changed"/>
+                <CheckBox x:Name="TimeDateChk" Content="显示日期" Margin="0,0,18,0"
+                         Checked="TimeSub_Changed" Unchecked="TimeSub_Changed"/>
+                <CheckBox x:Name="TimeSecChk"  Content="显示秒数"/>
+            </WrapPanel>
+        </GroupBox>
+
+        <GroupBox Header="外观" Padding="10" Margin="0,0,0,12">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="字体大小" Width="84" VerticalAlignment="Center"/>
+                    <Slider x:Name="FontSlider" Minimum="8" Maximum="32" TickFrequency="1"
+                            IsSnapToTickEnabled="True" Width="190"
+                            ValueChanged="FontSlider_ValueChanged"/>
+                    <TextBlock x:Name="FontLabel" Width="44" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="颜色模式" Width="84" VerticalAlignment="Center"/>
+                    <RadioButton x:Name="ColorLoad"   Content="按负载着色" Margin="0,0,14,0"
+                                 Checked="ColorMode_Changed"/>
+                    <RadioButton x:Name="ColorCustom" Content="自定义颜色" Checked="ColorMode_Changed"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="自定义颜色" Width="84" VerticalAlignment="Center"/>
+                    <TextBox x:Name="ColorBox" Width="96" TextChanged="ColorBox_TextChanged"/>
+                    <Rectangle x:Name="ColorPreview" Width="26" Height="18" Margin="8,0,0,0"
+                               Stroke="#888" Fill="#E6E6E6"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="背景透明度" Width="84" VerticalAlignment="Center"/>
+                    <Slider x:Name="OpacitySlider" Minimum="0" Maximum="1" TickFrequency="0.05"
+                            IsSnapToTickEnabled="True" Width="190"
+                            ValueChanged="OpacitySlider_ValueChanged"/>
+                    <TextBlock x:Name="OpacityLabel" Width="44" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="刷新间隔" Width="84" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="RefreshCombo" Width="100" SelectedValuePath="Tag">
+                        <ComboBoxItem Content="500 ms"  Tag="500"/>
+                        <ComboBoxItem Content="1000 ms" Tag="1000"/>
+                        <ComboBoxItem Content="1500 ms" Tag="1500"/>
+                        <ComboBoxItem Content="2000 ms" Tag="2000"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="排列方式" Width="84" VerticalAlignment="Center"/>
+                    <RadioButton x:Name="LayoutHoriz" Content="横向 (一行多项)" Margin="0,0,14,0"/>
+                    <RadioButton x:Name="LayoutVert"  Content="竖向 (每行一项)"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Header="屏幕" Padding="10" Margin="0,0,0,12">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                    <TextBlock Text="悬浮窗显示器" Width="92" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="OverlayCombo" Width="240"
+                              DisplayMemberPath="Label" SelectedValuePath="Value"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="FPS 监控屏幕" Width="92" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="FpsCombo" Width="240"
+                              DisplayMemberPath="Label" SelectedValuePath="Value"/>
+                </StackPanel>
+                <CheckBox x:Name="ShowFpsWindowNameChk"
+                          Content="显示当前 FPS 监控窗口名称（无焦点窗口时显示“桌面”）"
+                          Margin="0,8,0,0"/>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Header="FPS 曲线与 CSV 记录" Padding="10" Margin="0,0,0,12">
+            <StackPanel>
+                <TextBlock Text="最近 60 秒 FPS" Margin="0,0,0,4"/>
+                <local:FpsHistoryChart x:Name="HistoryChart" Height="120" MinWidth="400"/>
+                <TextBlock x:Name="CsvPathText" Margin="0,8,0,6" TextWrapping="Wrap"/>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="打开日志文件夹" Width="112" Margin="0,0,6,0"
+                            Click="OpenLogFolder_Click"/>
+                    <Button Content="打开 CSV 文件夹" Width="112" Margin="0,0,6,0"
+                            Click="OpenCsvFolder_Click"/>
+                    <Button Content="导出本次 CSV..." Width="112"
+                            Click="ExportCsv_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Header="文件保留" Padding="10" Margin="0,0,0,12">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                    <TextBlock Text="日志保留份数" Width="100" VerticalAlignment="Center"/>
+                    <TextBox x:Name="LogRetentionBox" Width="60"/>
+                    <TextBlock Text="份（0 = 无限）" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="CSV 保留份数" Width="100" VerticalAlignment="Center"/>
+                    <TextBox x:Name="CsvRetentionBox" Width="60"/>
+                    <TextBlock Text="份（0 = 无限）" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <Button x:Name="CheckUpdatesButton" Content="检查更新..." Width="110"
+                HorizontalAlignment="Right" Margin="0,0,0,8" Click="CheckUpdates_Click"/>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="OkBtn" Content="确定" Width="92" Margin="0,0,10,0"
+                    IsDefault="True" Click="Ok_Click"/>
+            <Button Content="取消" Width="92" IsCancel="True"/>
+        </StackPanel>
+        <TextBlock x:Name="FooterVersionText" HorizontalAlignment="Center"
+                   Margin="0,10,0,0" Foreground="#777"/>
+    </StackPanel>
+</Window>

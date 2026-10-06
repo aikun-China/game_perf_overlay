@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+    <ProjectGuid>{5F4A1091-6A8B-4C33-9E32-B8C5D4F1A2B3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>game_perf_overlay</RootNamespace>
+    <AssemblyName>game_perf_overlay</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Deterministic>false</Deterministic>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>5</LangVersion>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>game_perf_overlay.ico</ApplicationIcon>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <StartupObject />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- BCL DLLs (in-place .NET Framework 4.x runtime, no targeting pack needed) -->
+    <Reference Include="mscorlib" />
+    <Reference Include="System">
+      <HintPath>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core">
+      <HintPath>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\System.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data">
+      <HintPath>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\System.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml">
+      <HintPath>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\System.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <HintPath>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\System.Xml.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <HintPath>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\System.Data.DataSetExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <HintPath>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Microsoft.CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <HintPath>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management">
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\System.Management\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Management.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\System.Web.Extensions\v4.0_4.0.0.0__31bf3856ad364e35\System.Web.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_MSIL\System.Windows.Forms\v4.0_4.0.0.0__b77a5c561934e089\System.Windows.Forms.dll</HintPath>
+    </Reference>
+    <!-- WPF DLLs from the Windows in-box WPF runtime folder -->
+    <Reference Include="WindowsBase">
+      <HintPath>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\WPF\WindowsBase.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <HintPath>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\WPF\PresentationCore.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <HintPath>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\WPF\PresentationFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml">
+      <HintPath>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\WPF\System.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework">
+      <HintPath>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\WPF\ReachFramework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="OverlayWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ScreenPickerDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SettingsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UpdateDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AppConfig.cs" />
+    <Compile Include="AppVersion.cs" />
+    <Compile Include="ConfigStore.cs" />
+    <Compile Include="FpsMonitor.cs" />
+    <Compile Include="CsvRecorder.cs" />
+    <Compile Include="SessionFiles.cs" />
+    <Compile Include="UpdateService.cs" />
+    <Compile Include="MetricHistory.cs" />
+    <Compile Include="OverlayWindow.xaml.cs">
+      <DependentUpon>OverlayWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ScreenPickerDialog.xaml.cs">
+      <DependentUpon>ScreenPickerDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ScreenService.cs" />
+    <Compile Include="SettingsWindow.xaml.cs">
+      <DependentUpon>SettingsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateDialog.xaml.cs">
+      <DependentUpon>UpdateDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemMonitors.cs" />
+    <Compile Include="Util.cs" />
+    <Compile Include="Win32.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.manifest" />
+    <None Include="game_perf_overlay.ico" />
+    <None Include="game_perf_overlay.iss" />
+    <None Include="README.md" />
+    <None Include="CHANGELOG.md" />
+    <None Include="build.bat" />
+    <None Include="build_net48.bat" />
+    <None Include="publish.bat" />
+    <None Include="build_release.bat" />
+    <Content Include="PresentMon-2.6.0-x64.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PresentMon-LICENSE.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
